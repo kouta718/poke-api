@@ -65,7 +65,7 @@ export const showData = async (data) => {
   const select = document.getElementById("form-select");
 
   // 選択肢を追加(なぜかformとvariationのどちらかに姿が入ってる)
-  data.forms.forEach((form, index) => {
+  data.forms.forEach((form) => {
     const option = document.createElement("option");
     option.value = form.formId;           // ← valueにIDを入れる
     option.textContent = form.formName;   // ← 表示名
@@ -74,8 +74,6 @@ export const showData = async (data) => {
 
   data.varieties.forEach((varietie, index) => {
     if ([...select.options].some(opt => opt.value == varietie.formId)) return; // ← 重複回避
-    // 通常のフォルムを除外
-    if (varietie.varietieName === "" && index === 0) return;
     const option = document.createElement("option");
     // キョダイマックスは日本語表記がない
     if (/gigantamax/i.test(varietie.varietieName)) {

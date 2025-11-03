@@ -69,8 +69,7 @@ export const getPokemonData = async (id) => {
             formRes.data.form_names.find(n => n.language.name === "ja-Hrkt") ??
             formRes.data.form_names.find(n => n.language.name === "en");
 
-          if (!formNameObj?.name) return null; // ← 🔹名前なければ捨てる
-
+          if (!formNameObj?.name) return "";
           return {
             formId,
             formName: formNameObj.name

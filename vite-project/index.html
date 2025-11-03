@@ -2,165 +2,32 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg" />
+    <title>ポケモン検索</title>
   </head>
   <body>
+    <header class="header">
+      <h1 class="title">ポケモン検索</h1>
+    </header>
 
-    <h2>ポケモンSVテラレイドバトルワンパンできるか計算</h2>
+    <main class="container">
+      <section class="search-box">
+        <form class="form" id="js-form">
+          <input type="text" name="pokeName" class="input" placeholder="ポケモン名を入力" autocomplete="off" />
+          <button type="submit" class="btn">検索</button>
+        </form>
+      </section>
 
-    <!-- レイドポケモンポケモン情報 -->
-    <fieldset>
-      <legend>レイドポケモンポケモン設定</legend>
+      <section class="result" id="js-result"></section>
 
-      <label for="starCount">星数:</label>
-      <select id="starCount">
-        <option value="5">⭐︎5</option>
-        <option value="6" selected>⭐︎6</option>
-        <option value="7">⭐︎7</option>
-      </select>
+      <p>日本語のみ対応</p>
+    </main>
 
-      <form action="#" class="form" id="def-form">
-        <input type="text" name="defName" placeholder="ポケモン名">
-        <button type="submit">検索</button>
-      </form>
-      <div class="result" id="def-result"></div>
+    <footer class="footer">
+      <small>Powered by PokéAPI</small>
+    </footer>
 
-      <label for="def-tera">テラスタイプ</label>
-      <select id="def-tera" name="defTera"></select>
-    </fieldset>
-
-
-
-    <!-- 3. 攻撃側（メインアタッカー） -->
-    <fieldset>
-      <legend>攻撃側（メインアタッカー）</legend>
-
-      <form action="#" class="form" id="atk-form">
-        <input type="text" name="atkName" placeholder="ポケモン名">
-        <button type="submit">検索</button>
-      </form>
-      <div class="result" id="atk-result"></div>
-
-      <label for="atk-nature">性格補正</label>
-      <select id="atk-nature" name="atkNature">
-        <option value="hp">無し</option>
-        <option value="atk">攻撃</option>
-        <option value="contact">特攻</option>
-      </select>
-
-      <div class="evs-ivs">
-        <label>努力値</label>
-        <div class="counter">
-          A  <input type="number" id="atk-ev-atk" name="atkEvsAtk" min="0" max="252" value="0" />
-          <button>min</button>
-          <button>max</button>
-        </div>
-        <div class="counter">
-          C <input type="number" id="atk-ev-spa" name="atkEvsSpa" min="0" max="252" value="0" />
-          <button>min</button>
-          <button>max</button>
-        </div>
-        <div class="counter">
-          S <input type="number" id="atk-ev-spe" name="atkEvsSpe" min="0" max="252" value="0" />
-          <button>min</button>
-          <button>max</button>
-        </div>
-      </div>
-
-      <div>
-        <label for="atk-ivs-mode">個体値（0-31）</label>
-        <select id="atk-ivs-mode" name="atkIvsMode">
-          <option value="max">自動最大</option>
-          <option value="manual">手入力</option>
-        </select>
-      </div>
-
-      <div class="atk-ivs-manual" style="display:none">
-        A <input type="number" id="atk-iv-hp" min="0" max="31" value="31" />
-        C <input type="number" id="atk-iv-atk" min="0" max="31" value="31" />
-        S <input type="number" id="atk-iv-def" min="0" max="31" value="31" />
-      </div>
-
-    </fieldset>
-
-    <!-- 5. バトル補正の状態表示 -->
-    <fieldset>
-    <legend>バトル補正</legend>
-
-    <div class="stat-stages">
-      <label>防御段階</label>
-      <input type="number" id="stage-def" name="stageDef" min="-6" max="6" value="0" />
-      <label>特防段階</label>
-      <input type="number" id="stage-spd" name="stageSpd" min="-6" max="6" value="0" />
-    </div>
-    <div class="stat-stages">
-      <label>攻撃段階</label>
-      <input type="number" id="stage-atk" name="stageAtk" min="-6" max="6" value="0" />
-      <label>特攻段階</label>
-      <input type="number" id="stage-spa" name="stageSpa" min="-6" max="6" value="0" />
-    </div>
-
-    <label>
-      <input type="radio" name="item" value="choice-goggles" /> こだわり眼鏡
-    </label>
-    <label>
-      <input type="radio" name="item" value="choice-band" /> こだわりハチマキ
-    </label>
-    <label>
-      <input type="radio" name="item" value="life-orb" /> いのちのたま
-    </label>
-    <label>
-      <input type="radio" name="item" value="plate" /> プレート系（1.2倍）
-    </label>
-
-    <label for="weather">天候</label>
-    <select id="weather" name="weather">
-      <option value="none">なし</option>
-      <option value="sun">晴れ</option>
-      <option value="rain">雨</option>
-      <option value="sand">砂嵐</option>
-      <option value="snow">雪</option>
-    </select>
-
-    <label for="field">フィールド</label>
-    <select id="field" name="field">
-      <option value="none">なし</option>
-      <option value="electric">エレキフィールド</option>
-      <option value="grassy">グラスフィールド</option>
-      <option value="misty">ミスティフィールド</option>
-      <option value="psychic">サイコフィールド</option>
-    </select>
-
-    <div class="support-effects">
-      <label><input type="checkbox" id="power-spot" name="powerSpot" /> パワースポット</label>
-      <label><input type="checkbox" id="damaging-orb" name="damagingOrb" /> わざわいのたま</label>
-      <label><input type="checkbox" id="cursed-sword" name="cursedSword" /> わざわいのつるぎ</label>
-      <label><input type="checkbox" id="ikedom" name="ikedom" /> いけドン</label>
-      <label><input type="checkbox" id="help-hand" name="helpHand" /> てだすけ</label>
-    </div>
-
-    </fieldset>
-
-
-    <button type="submit" id="calc-btn">計算する</button>
-
-    <!-- 結果表示領域（JSで出力） -->
-    <section id="result" aria-live="polite">
-    <!-- JS がここに結果（HP、与ダメージ範囲、ワンパン判定）を出力 -->
-    </section>
-
-
-    <!-- 開発注記：
-    - data-populate="pokemon" 属性の select は JS 側で PokeAPI を利用して候補を埋めます。
-    - data-populate-moves のついた select は選択ポケモンに応じて習得技リストを埋める想定です。
-    - 特性・持ち物リストも JS 側で算出して埋めてください。
-    - 計算は WebWorker に移しても良いです（重い場合）。
-    -->
-
-    <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
-    <script type="module" src="/src/counter.js"></script>
   </body>
 </html>

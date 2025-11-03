@@ -33,7 +33,7 @@
   レイアウト
 =========== */
 body {
-  margin: 0;
+  margin: 50px;
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
@@ -153,6 +153,9 @@ body {
 
 /* スマホ：1カラム */
 @media (max-width: 600px) {
+  body {
+    margin:10px;
+  }
   .container {
     width: min(300px, 95%);
   }
@@ -166,18 +169,5 @@ body {
   }
   .btn {
     margin-top: 10px;
-  }
-}
-
-/* PC：画像とデータを横並び */
-@media (min-width: 601px) {
-  .result.show {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 20px;
-  }
-
-  .img-box {
-    margin: 0;
   }
 }

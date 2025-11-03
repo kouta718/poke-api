@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg" />
+    <title>ポケモン検索</title>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="title">ポケモン検索</h1>
+    </header>
+
+    <main class="container">
+      <section class="search-box">
+        <form class="form" id="js-form">
+          <input type="text" name="pokeName" class="input" placeholder="ポケモン名を入力" autocomplete="off" />
+          <button type="submit" class="btn">検索</button>
+        </form>
+      </section>
+
+      <section class="result" id="js-result"></section>
+
+      <p>日本語のみ対応</p>
+    </main>
+
+    <footer class="footer">
+      <small>Powered by PokéAPI</small>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

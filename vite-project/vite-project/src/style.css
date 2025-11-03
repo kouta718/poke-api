@@ -1,0 +1,183 @@
+/* ==========
+  ベース設定
+=========== */
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #333333;
+  --text-light: #333333;
+  --text-dark: #ffffff;
+
+  --frame: #000000;
+  --frame-dark: #ffffff;
+
+  --accent: #6e2c2c; /* レッド：図鑑感 */
+  --radius: 10px;
+
+  font-family: "Press Start 2P", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    background: var(--bg-dark);
+    color: var(--text-dark);
+  }
+}
+
+/* ==========
+  レイアウト
+=========== */
+body {
+  margin: 0;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* コンテンツ枠（画面） */
+.container {
+  width: min(860px, 95%);
+  background: transparent;
+  border: 4px solid var(--frame);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+/* ダークモード枠反転 */
+@media (prefers-color-scheme: dark) {
+  .container {
+    border-color: var(--frame-dark);
+  }
+}
+
+/* ==========
+  タイトル
+=========== */
+.title {
+  font-size: 40px;
+  text-align: center;
+  margin: 10px 0 20px;
+  border-bottom: 4px solid var(--frame);
+  padding-bottom: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .title {
+    border-color: var(--frame-dark);
+  }
+}
+
+/* ==========
+  フォーム
+=========== */
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.input,
+.btn {
+  border: 3px solid var(--frame);
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 1.4rem;
+  font-family: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  .input,
+  .btn {
+    border-color: var(--frame-dark);
+  }
+}
+
+.input {
+  width: min(300px, 70vw);
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: bold;
+  background: var(--accent);
+  color: #fff;
+  transition: filter 0.2s;
+}
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+/* ==========
+  結果
+=========== */
+.result {
+  margin-top: 20px;
+  background: transparent;
+  border: 3px solid var(--frame);
+  padding: 20px;
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.result dl,
+.result dt,
+.result dd {
+  margin: 0;
+  padding: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .result {
+    border-color: var(--frame-dark);
+  }
+}
+
+.result select {
+  font-size: 1.2rem;
+  padding: 4px;
+}
+
+
+/* ==========
+  レスポンシブ
+=========== */
+
+/* スマホ：1カラム */
+@media (max-width: 600px) {
+  .container {
+    width: min(300px, 95%);
+  }
+  .search-box {
+    flex-direction: column;
+  }
+  .input,
+  .btn {
+    width: 80%;
+    margin-top: 20px;
+  }
+  .btn {
+    margin-top: 10px;
+  }
+}
+
+/* PC：画像とデータを横並び */
+@media (min-width: 601px) {
+  .result.show {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 20px;
+  }
+
+  .img-box {
+    margin: 0;
+  }
+}
